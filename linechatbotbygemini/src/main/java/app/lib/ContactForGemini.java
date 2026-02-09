@@ -8,7 +8,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 // geminiにメッセージを送り受け取る
 public class  ContactForGemini {
 
-    public String ContactForGemini(String message, Context context) {
+    public String talkforgemini(String message, Context context) {
         
         // Lambdaのログに開始メッセージを出力
         context.getLogger().log("geminiへメッセージを送信しました");

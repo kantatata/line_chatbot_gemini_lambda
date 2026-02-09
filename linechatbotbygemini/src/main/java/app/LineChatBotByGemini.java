@@ -13,6 +13,8 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
 
+import app.lib.ContactForGemini;
+
 /**
  * Java 21環境でJacksonライブラリを使用し、InputStreamから直接JSONを解析するハンドラ。
  */
@@ -43,7 +45,7 @@ public class LineChatBotByGemini implements RequestStreamHandler {
         String replyMessage = "";
         if (content[0] != null) {
              switch (content[1]){
-                case "text"     ->  replyMessage = contactForGemini(content[2], context);
+                case "text"     ->  replyMessage = new ContactForGemini().talkforgemini(content[2], context);
                 case "sticker"  ->  replyMessage = "スタンプありがとう";
                 default         ->  replyMessage = "ファイルはいやよ";
             } 
@@ -125,34 +127,34 @@ public class LineChatBotByGemini implements RequestStreamHandler {
     }
 
     //geminiにメッセージを送る。別クラスにしたい。
-    public String contactForGemini(String message, Context context) {
+    // public String contactForGemini(String message, Context context) {
         
-        // Lambdaのログに開始メッセージを出力
-        context.getLogger().log("geminiへメッセージを送信しました: メッセージ内容: " + message);
+    //     // Lambdaのログに開始メッセージを出力
+    //     context.getLogger().log("geminiへメッセージを送信しました: メッセージ内容: " + message);
         
-        String responseText;
-        try {
-            // APIクライアントの初期化
-            Client client = new Client();
+    //     String responseText;
+    //     try {
+    //         // APIクライアントの初期化
+    //         Client client = new Client();
             
-            // API呼び出し
-            GenerateContentResponse response =
-                client.models.generateContent(
-                    "gemini-2.5-flash",
-                    message,
-                    null);
+    //         // API呼び出し
+    //         GenerateContentResponse response =
+    //             client.models.generateContent(
+    //                 "gemini-2.5-flash",
+    //                 message,
+    //                 null);
             
-            responseText = response.text();
+    //         responseText = response.text();
             
-            context.getLogger().log("geminiからメッセージを受け取りました: " + responseText);
+    //         context.getLogger().log("geminiからメッセージを受け取りました: " + responseText);
             
-        } catch (Exception e) {
-            // エラーログを出力し、エラーメッセージを返す
-            context.getLogger().log("エラーが発生しました: " + e.getMessage());
-            return "Error: " + e.getMessage();
-        }
+    //     } catch (Exception e) {
+    //         // エラーログを出力し、エラーメッセージを返す
+    //         context.getLogger().log("エラーが発生しました: " + e.getMessage());
+    //         return "Error: " + e.getMessage();
+    //     }
         
-        // 成功した結果を返す
-        return responseText;
-    }
+    //     // 成功した結果を返す
+    //     return responseText;
+    // }
 }
