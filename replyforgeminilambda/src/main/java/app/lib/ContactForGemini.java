@@ -24,7 +24,7 @@ public class  ContactForGemini {
                     "gemini-2.5-flash",
                     message,
                     null);
-            
+            //geminiからのメッセージのみを取得
             responseText = response.text();
             
             context.getLogger().log("geminiからメッセージを受け取りました: " + responseText);

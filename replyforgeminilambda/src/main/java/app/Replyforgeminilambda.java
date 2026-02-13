@@ -103,39 +103,6 @@ public class Replyforgeminilambda implements RequestStreamHandler {
         return null;
     }
 
-    // //geminiにメッセージを送る。
-    // public String contactForGemini(String message, Context context) {
-        
-    //     // Lambdaのログに開始メッセージを出力
-    //     context.getLogger().log("geminiへメッセージを送信しました: メッセージ内容: " + message);
-        
-    //     String responseText;
-    //     try {
-    //         // APIクライアントの初期化
-    //         Client client = new Client();
-            
-    //         // API呼び出し
-    //         GenerateContentResponse response =
-    //             client.models.generateContent(
-    //                 "gemini-2.5-flash",
-    //                 message,
-    //                 null
-    //             );
-    //         //geminiから送られてきたデータから本文だけを抽出
-    //         responseText = response.text();
-            
-    //         context.getLogger().log("geminiからメッセージを受け取りました: " + responseText);
-            
-    //     } catch (Exception e) {
-    //         // エラーログを出力し、エラーメッセージを返す
-    //         context.getLogger().log("エラーが発生しました: " + e.getMessage());
-    //         return "Error: " + e.getMessage();
-    //     }
-        
-    //     // 成功した結果を返す
-    //     return responseText;
-    // }
-
     private void sendReplyMessage(String[] content, String message, Context context) {
         try {
             URL url = new URL(REPLY_API);
